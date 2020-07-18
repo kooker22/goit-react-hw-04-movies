@@ -43,8 +43,6 @@ class MovieDetailsPage extends Component {
     const { id, poster_path, title, overview, genres, popularity } = this.state;
     const { location } = this.props;
     const fixedPopularity = Number(popularity).toFixed(1);
-
-    console.log(location);
     return (
       <>
         {id !== null && (
