@@ -1,4 +1,5 @@
 import React, { Component, Suspense, lazy } from 'react';
+import routes from './routes';
 import './App.css';
 import 'modern-normalize/modern-normalize.css';
 import { Switch, Route, NavLink } from 'react-router-dom';
@@ -32,9 +33,9 @@ class App extends Component {
         </ul>
         <Suspense fallback={<p>Loading...</p>}>
           <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/movies/:movieId" component={MovieDetailsPage} />
-            <Route path="/movies" component={MoviesPage} />
+            <Route exact path={routes.home} component={HomePage} />
+            <Route path={routes.movieDetails} component={MovieDetailsPage} />
+            <Route path={routes.movies} component={MoviesPage} />
           </Switch>
         </Suspense>
       </>

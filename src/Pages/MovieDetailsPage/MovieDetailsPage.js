@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
+import routes from '../../routes';
 import Reviews from '../../Components/Reviews/Reviews';
 import Cast from '../../Components/Cast/Cast';
 
@@ -45,6 +46,9 @@ class MovieDetailsPage extends Component {
   imageSize = 'w300';
   handleGoBack = () => {
     const { location, history } = this.props;
+    if (location.state && location.state.from) {
+      return history.push(location.state.from);
+    }
     history.push(location.state.from);
   };
   render() {
