@@ -1,0 +1,65 @@
+h1 {
+  margin-top: -8px;
+}
+.card {
+  width: 1200px;
+}
+.cardWrapper {
+  display: flex;
+  margin-left: 20px;
+  width: 500px;
+}
+.movieInfo {
+  margin-left: 25px;
+  width: 800px;
+}
+.goBackBtn {
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+.userScore {
+  font-size: 20px;
+}
+.overview {
+  width: 500px;
+  font-size: 15px;
+  font-weight: 400;
+  margin-left: 5px;
+}
+.genres {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+.genresItem {
+  margin-left: 5px;
+  font-size: 16px;
+}
+.genresItem:nth-child(n)::after {
+  content: ' |';
+}
+.genresItem:nth-last-child(1)::after {
+  content: '';
+}
+.cardLinks {
+  display: flex;
+  padding: 0;
+  margin-left: 15px;
+}
+.cardLinksItem {
+  list-style: none;
+  margin-left: 5px;
+  font-size: 20px;
+  font-size: 20px;
+}
+.cardLinksItem:nth-child(n)::after {
+  content: ' |';
+  color: blue;
+}
+.cardLinksItem:nth-last-child(1)::after {
+  content: '';
+}
+.link {
+  text-decoration: none;
+  color: darkviolet;
+}

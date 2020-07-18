@@ -1,0 +1,13 @@
+.movieList {
+  list-style: none;
+}
+.listItem {
+  color: blueviolet;
+  text-decoration: none;
+}
+.movieListItem {
+  margin-top: 5px;
+}
+.movieListItem :hover {
+  color: cornflowerblue;
+}

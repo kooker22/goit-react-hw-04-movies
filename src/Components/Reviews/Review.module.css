@@ -1,0 +1,15 @@
+.review {
+  list-style: none;
+  width: 1200px;
+}
+.reviewAuthor {
+  font-size: 25px;
+  color: coral;
+  font-weight: normal;
+}
+.reviewContent {
+  font-size: 16px;
+  font-weight: 400;
+  padding-bottom: 5px;
+  border-bottom: 2px solid cyan;
+}
