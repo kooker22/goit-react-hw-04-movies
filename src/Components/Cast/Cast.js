@@ -39,6 +39,7 @@ class Cast extends Component {
                   <img
                     src="https://www.atehno.md/theme/images/no_image.png"
                     width="250"
+                    alt=""
                   ></img>
                 )}
                 <p className={style.actorsName}>{actor.name}</p>

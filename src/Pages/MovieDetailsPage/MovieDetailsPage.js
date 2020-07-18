@@ -16,6 +16,14 @@ class MovieDetailsPage extends Component {
     initialGenres: [],
     initialPopularity: null,
   };
+  static propTypes = {
+    id: PropTypes.number,
+    poster: PropTypes.string,
+    title: PropTypes.string,
+    overview: PropTypes.string,
+    genres: PropTypes.string,
+    popularity: PropTypes.string,
+  };
   state = {
     id: this.props.initialId,
     poster_path: this.props.initialPoster,
@@ -41,7 +49,6 @@ class MovieDetailsPage extends Component {
   };
   render() {
     const { id, poster_path, title, overview, genres, popularity } = this.state;
-    const { location } = this.props;
     const fixedPopularity = Number(popularity).toFixed(1);
     return (
       <>

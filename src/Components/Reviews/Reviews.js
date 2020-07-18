@@ -9,6 +9,7 @@ class Reviews extends Component {
   };
   state = {
     reviews: [],
+    noReview: 'We dont have any reviews for this movie',
   };
   componentDidMount() {
     Axios.get(
@@ -16,10 +17,12 @@ class Reviews extends Component {
     ).then(response => this.setState({ reviews: response.data.results }));
   }
   render() {
-    const { reviews } = this.state;
+    const { reviews, noReview } = this.state;
     return (
       <>
-        {reviews !== [] ? (
+        {reviews === [] ? (
+          <p>{noReview}</p>
+        ) : (
           <ul className={style.review}>
             {reviews.map(review => (
               <li key={review.id}>
@@ -31,8 +34,6 @@ class Reviews extends Component {
               </li>
             ))}
           </ul>
-        ) : (
-          <p>We dont' have any reviews for this movie</p>
         )}
       </>
     );
