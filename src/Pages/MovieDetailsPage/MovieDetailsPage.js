@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Axios from 'axios';
-import routes from '../../routes';
 import Reviews from '../../Components/Reviews/Reviews';
 import Cast from '../../Components/Cast/Cast';
 
 import style from './MovieDetailsPage.module.css';
+import { imageSize, baseImageUrl, key } from '../../services/api';
 
 class MovieDetailsPage extends Component {
   static defaultProps = {
@@ -36,14 +36,14 @@ class MovieDetailsPage extends Component {
   async componentDidMount() {
     const { movieId } = this.props.match.params;
     await Axios.get(
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=1e5ce310b13e54a49c5d34c28a1fb385`,
-    ).then(response => {
-      const data = response.data;
-      this.setState({ ...data });
-    });
+      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}`,
+    )
+      .then(response => {
+        const data = response.data;
+        this.setState({ ...data });
+      })
+      .catch(console.log('error'));
   }
-  baseImageUrl = 'https://image.tmdb.org/t/p/';
-  imageSize = 'w300';
   handleGoBack = () => {
     const { location, history } = this.props;
     if (location.state && location.state.from) {
@@ -54,6 +54,8 @@ class MovieDetailsPage extends Component {
   render() {
     const { id, poster_path, title, overview, genres, popularity } = this.state;
     const fixedPopularity = Number(popularity).toFixed(1);
+    console.log(this.props.location);
+    console.log(this.props.history);
     return (
       <>
         {id !== null && (
@@ -68,7 +70,7 @@ class MovieDetailsPage extends Component {
             <div className={style.cardWrapper}>
               <div>
                 <img
-                  src={`${this.baseImageUrl}${this.imageSize}${poster_path}`}
+                  src={`${baseImageUrl}${imageSize}${poster_path}`}
                   alt={title}
                 />
               </div>
@@ -97,7 +99,7 @@ class MovieDetailsPage extends Component {
                   to={{
                     pathname: `${this.props.match.url}/cast`,
                     state: {
-                      from: this.props.location,
+                      from: this.props.location.state.from,
                     },
                   }}
                   className={style.link}
@@ -110,7 +112,7 @@ class MovieDetailsPage extends Component {
                   to={{
                     pathname: `${this.props.match.url}/reviews`,
                     state: {
-                      from: this.props.location,
+                      from: this.props.location.state.from,
                     },
                   }}
                   className={style.link}

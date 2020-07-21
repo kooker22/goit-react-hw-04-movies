@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Axios from 'axios';
 import style from './Cast.module.css';
+import { avatarSize, baseImageUrl } from '../../services/api';
 
 class Cast extends Component {
   static defaultProps = {
@@ -14,12 +15,13 @@ class Cast extends Component {
   state = {
     actors: this.props.initialActors,
   };
-  baseImageUrl = 'https://image.tmdb.org/t/p/';
-  imageSize = 'w500';
+
   componentDidMount() {
     Axios.get(
       `https://api.themoviedb.org/3/movie/${this.props.movieId}/credits?api_key=1e5ce310b13e54a49c5d34c28a1fb385`,
-    ).then(response => this.setState({ actors: response.data.cast }));
+    )
+      .then(response => this.setState({ actors: response.data.cast }))
+      .catch(console.log('error'));
   }
   render() {
     const { actors } = this.state;
@@ -32,7 +34,7 @@ class Cast extends Component {
                 {actor.profile_path !== null ? (
                   <img
                     className={style.image}
-                    src={`${this.baseImageUrl}${this.imageSize}${actor.profile_path}`}
+                    src={`${baseImageUrl}${avatarSize}${actor.profile_path}`}
                     alt=""
                   />
                 ) : (

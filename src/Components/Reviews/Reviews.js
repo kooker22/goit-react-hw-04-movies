@@ -14,15 +14,15 @@ class Reviews extends Component {
   componentDidMount() {
     Axios.get(
       `https://api.themoviedb.org/3/movie/${this.props.movieId}/reviews?api_key=1e5ce310b13e54a49c5d34c28a1fb385&language=en-US&page=1`,
-    ).then(response => this.setState({ reviews: response.data.results }));
+    )
+      .then(response => this.setState({ reviews: response.data.results }))
+      .catch(console.log('error'));
   }
   render() {
     const { reviews, noReview } = this.state;
     return (
       <>
-        {reviews === [] ? (
-          <p>{noReview}</p>
-        ) : (
+        {reviews.length > 0 ? (
           <ul className={style.review}>
             {reviews.map(review => (
               <li key={review.id}>
@@ -34,6 +34,8 @@ class Reviews extends Component {
               </li>
             ))}
           </ul>
+        ) : (
+          <p>{noReview}</p>
         )}
       </>
     );
